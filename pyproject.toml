@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apex-quantfabric"
+version = "0.1.0"
+description = "Bounded financial signal and reservation qualification"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Ahmed Hassan"}]
+
+[tool.setuptools.packages.find]
+include = ["oracle*", "qualification*", "adapters*", "research*", "economics*"]

@@ -1,0 +1,21 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  CONTRACT["Application contract and independent reference"]
+  CPU["CPU: reference, bounded admission and reconciliation"]
+  GPU["GPU: research and optional qualified model inference"]
+  NIC["ConnectX: transport, steering and packet facilities"]
+  ARM["BlueField Arm: infrastructure services and isolation"]
+  DPA["BlueField DPA: supported compiled packet or I/O work"]
+  FPGA["FPGA: separately qualified streaming implementation"]
+  CHECK["Semantics, numerical quality, freshness and full-path costs"]
+  VERDICT["Qualified for named workload or unqualified/unknown"]
+  CONTRACT --> CPU
+  CONTRACT -. "future actual GPU adapter" .-> GPU
+  CONTRACT -. "future physical interfaces" .-> NIC & ARM & DPA & FPGA
+  CPU & GPU & NIC & ARM & DPA & FPGA --> CHECK --> VERDICT
+  class CONTRACT,CHECK,VERDICT check;
+  class GPU,NIC,ARM,DPA,FPGA future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

@@ -1,0 +1,21 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  CONTRACT["Frozen release decision and workload populations"]
+  ENV["Exact hardware, source, topology, tools and configuration"]
+  RUN["Baseline and candidate with paired offered schedules"]
+  RAW["Every offered, failed, expired and accepted result"]
+  NUM["Numerical quality and decision-level comparison"]
+  TIME["Model-only and full-path latency separately"]
+  COST["Measured allocated cost per accepted result"]
+  FAULT["Delay, reorder, gaps, overflow and incomplete-work controls"]
+  VERIFY["Independent accounting and contract checker"]
+  RECEIPT["Scoped verdict; hashes are not authentic custody"]
+  NEXT["Requalify on model, environment or workload drift"]
+  CONTRACT & ENV --> RUN --> RAW
+  RAW --> NUM & TIME & COST
+  NUM & TIME & COST & FAULT --> VERIFY --> RECEIPT --> NEXT
+  class VERIFY,RECEIPT check;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

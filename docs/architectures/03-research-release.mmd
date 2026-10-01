@@ -1,0 +1,23 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  DATA["Synthetic or authorized point-in-time datasets"]
+  RESEARCH["Features, simulation, model and policy research"]
+  SPLIT["Frozen training, validation and held-out populations"]
+  CAND["Versioned candidate model, policy and configuration"]
+  BASE["Pinned baseline implementation and workload"]
+  ACCEPT["Numerical, decision, freshness and cost acceptance contract"]
+  QUAL["Paired replay and independent qualification"]
+  RESULT["Pass, fail or inconclusive with failing slices"]
+  REVIEW["Off-path release authorization"]
+  SHADOW["Authorized customer shadow run"]
+  DEPLOY["Later operational deployment after separate gates"]
+  DATA --> RESEARCH --> SPLIT --> CAND
+  CAND & BASE & ACCEPT --> QUAL --> RESULT
+  RESULT -->|accepted scope| REVIEW --> SHADOW
+  SHADOW -. "session and physical qualification required" .-> DEPLOY
+  class SPLIT,ACCEPT,QUAL,RESULT check;
+  class DEPLOY future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

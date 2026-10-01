@@ -1,0 +1,22 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  NOW["Stage 0: current workstation and synthetic workload"]
+  NEW["New signal-to-reservation profile and independent oracle"]
+  CPU["Stage 1: native baseline/candidate release decision"]
+  BUYER["Buyer validates missing release evidence"]
+  GPU["Stage 2: actual GPU-only experiment"]
+  NIC["Stage 3: qualified GPU plus NIC/DPU topology"]
+  FPGA["Stage 4: optional qualified FPGA implementation"]
+  SHADOW["Stage 5: authorized customer shadow pilot"]
+  HOLD["No access or insufficient value: keep branch unqualified"]
+  NOW --> NEW --> CPU --> BUYER
+  BUYER -->|specific value and access| GPU --> NIC --> SHADOW
+  BUYER -. "separate target and rights" .-> FPGA --> SHADOW
+  BUYER -->|existing tooling already sufficient| HOLD
+  GPU & NIC & FPGA -->|missing qualification| HOLD
+  class NEW,CPU,BUYER check;
+  class GPU,NIC,FPGA,SHADOW,HOLD future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

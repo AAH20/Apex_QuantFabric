@@ -1,0 +1,25 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  MARKET["Sequenced normalized market events and logical ticks"]
+  SNAP["Feature snapshot: profile, epoch and input watermark"]
+  PRED["CPU predictor now; qualified CUDA predictor later"]
+  RESULT["Prediction: snapshot, model, policy and validity horizon"]
+  MATCH["Check identity, numerical policy, watermark and expiry"]
+  RESERVE["Exact bounded reservation and admission authority"]
+  OUTPUT["Authorized action proposal to controlled sink"]
+  FEEDBACK["Sink observations and unresolved obligations"]
+  REJECT["Reject or hold stale, incompatible or ambiguous work"]
+  EVIDENCE["Independent event oracle and complete disposition trace"]
+  MARKET --> SNAP --> PRED --> RESULT --> MATCH
+  MARKET --> MATCH
+  MATCH -->|permitted signal| RESERVE --> OUTPUT --> FEEDBACK
+  FEEDBACK --> RESERVE
+  MATCH -->|contract violation| REJECT
+  RESERVE -->|capacity or authority unavailable| REJECT
+  MATCH & RESERVE & OUTPUT & FEEDBACK & REJECT --> EVIDENCE
+  class MATCH,RESERVE,EVIDENCE check;
+  class REJECT future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

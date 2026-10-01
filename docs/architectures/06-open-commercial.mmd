@@ -1,0 +1,28 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart LR
+  subgraph OPEN["Proposed Apache public core for newly authored eligible code"]
+    CONTRACT["Contracts and public synthetic fixtures"]
+    ORACLE["Reference oracle, replay and verifier"]
+    LOCAL["Useful local runner and basic reports"]
+    API["Public adapter API and evidence schemas"]
+    CONTRACT --> ORACLE --> LOCAL --> API
+  end
+  subgraph PRIVATE["Proposed separately implemented enterprise product"]
+    PROFILE["Authorized customer workloads and deployment profiles"]
+    OPS["Private artifact operations, tenant controls and release workflow"]
+    ADAPT["Eligible private integrations and maintained adapters"]
+    SERVICE["Customer-hosted qualification and support"]
+    PROFILE & OPS & ADAPT --> SERVICE
+  end
+  API --> SERVICE
+  RIGHTS["Existing project licenses and vendor SDK rights remain distinct"]
+  RIGHTS --> API & ADAPT
+  COMPANY["Company equity governed by separate ownership documents"]
+  COMPANY --> PRIVATE
+  style OPEN fill:#101827,stroke:#64748b,color:#ffffff
+  style PRIVATE fill:#101827,stroke:#64748b,color:#ffffff
+  class RIGHTS,COMPANY check;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

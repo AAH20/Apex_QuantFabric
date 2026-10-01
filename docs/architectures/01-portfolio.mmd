@@ -1,0 +1,25 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  PRODUCT["Apex_QuantFabric: proposed quant release qualification"]
+  QUANT["Quant Whale and HFT Microstructure: domain methods"]
+  GRAPH["GraphRAG, graph workspace and optimization kernels"]
+  COMPILER["Frontier compiler methods and ContractForge"]
+  LOW["ULL, Tick and PerfAtlas: existing bounded evidence"]
+  OPS["GRC Claw, cloud control loop and network twin"]
+  ECON["AI Factory Revenue Twin and FinOps methods"]
+  AGENTS["Swarm and evaluation tools: offline investigation"]
+  PRIVATE["Separately owned enterprise product and services"]
+  QUANT -. "candidate workload and policy adapters" .-> PRODUCT
+  GRAPH -. "candidate selection and planning adapters" .-> PRODUCT
+  COMPILER -. "candidate implementation and legality adapters" .-> PRODUCT
+  LOW -. "new profile and metric interfaces require qualification" .-> PRODUCT
+  OPS -. "candidate review and evidence interfaces" .-> PRODUCT
+  ECON -. "candidate measured cost scenarios" .-> PRODUCT
+  AGENTS -. "candidate offline proposals" .-> PRODUCT
+  PRODUCT -->|public API and permitted reuse| PRIVATE
+  class PRODUCT check;
+  class PRIVATE future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;

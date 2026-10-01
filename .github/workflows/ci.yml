@@ -1,0 +1,22 @@
+name: Native qualification
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: make test
+      - run: python3 -m qualification.run --events 5000 --seeds 7 19 --controls --output evidence/runs/ci
+      - run: python3 -m qualification.verify evidence/runs/ci
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qualification-${{ matrix.python }}
+          path: evidence/runs/ci

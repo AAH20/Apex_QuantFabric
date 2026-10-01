@@ -1,0 +1,21 @@
+%%{init: {"theme":"dark","flowchart":{"htmlLabels":false},"themeVariables":{"background":"#0b1220","primaryTextColor":"#ffffff","lineColor":"#94a3b8","edgeLabelBackground":"#0b1220"}}}%%
+flowchart TB
+  DEMO["Reproducible workstation demo and counterexamples"]
+  BUYER["Named buyer decision and design-partner evidence"]
+  ASK["Request technical review of one workload protocol"]
+  COMPARE["Compare with existing NVIDIA workflows"]
+  PILOT["Negotiate scoped lab or customer-operated pilot"]
+  RESULT["Publish only authorized measured results"]
+  COMMERCIAL["Paid integration or maintained enterprise qualification"]
+  EQUITY["Optional investment: separate cap table negotiation"]
+  IP["Background IP, commissioned work and data rights"]
+  DEMO & BUYER --> ASK --> COMPARE
+  COMPARE -->|shared customer value| PILOT --> RESULT --> COMMERCIAL
+  IP --> PILOT & COMMERCIAL
+  COMMERCIAL -. "not automatic" .-> EQUITY
+  class DEMO,BUYER,COMPARE,IP check;
+  class PILOT,EQUITY future;
+
+classDef default fill:#172554,stroke:#93c5fd,color:#ffffff;
+classDef check fill:#163329,stroke:#6ee7b7,color:#ffffff;
+classDef future fill:#422718,stroke:#fdba74,color:#ffffff;
